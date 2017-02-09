@@ -1,29 +1,107 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hank Quinlan, Horrible Cop</title>
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
+		<style>
+
+			textarea:focus
+			{
+				text-decoration: none;
+			}
+            
+            
+            *
+            {
+                box-sizing:border-box;           /* easier box-model calculations */
+                -webkit-box-sizing: border-box;
+            }
+            
+            html, body 
+            {
+              height: 100%;
+              margin:0;
+            }
+
+            textarea 
+            {
+                border-style: none;
+                border-color: Transparent;
+                outline: none;
+                background-color: red;
+                color: green;
+                font-size: 20px;
+                font-family: "Consolas";
+                position: fixed;
+                width:  calc(100vw - 20px);      
+                height: calc(100vh - 20px);
+                overflow-y: scroll;
+                resize: none;
+            }
+
+		</style>
 	</head>
+
+
 	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<div class="container">
-    		<div class="blurb">
-        		<h1>Hi there, I'm Hank Quinlan!</h1>
-				<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
-    		</div><!-- /.blurb -->
-		</div><!-- /.container -->
-		<footer>
-    		<ul>
-        		<li><a href="mailto:hankquinlanhub@gmail.com">email</a></li>
-        		<li><a href="https://github.com/hankquinlan">github.com/hankquinlan</a></li>
-			</ul>
-		</footer>
+
+		<textarea spellcheck="false"></textarea> 
+    
+        
+		<script src="kodi.js"></script>
+		<script>
+            
+			var txt = document.querySelector( "textarea" );
+            koka += "\n\n";
+			var permbajtja = koka;
+			var n = 0;
+            var i = 0;
+            
+        
+			window.onload = function()
+			{
+                txt.style.width = window.innerWidth + "px";
+				txt.style.height = window.innerHeight + "px";
+                
+                txt.value = koka;
+				txt.focus();
+			};
+            
+            
+            document.body.onresize = function()
+            {
+                txt.style.width = screen.width;
+                txt.style.height = screen.height;
+                
+            };
+        
+
+            
+			txt.addEventListener( "keydown", function( event )
+			{	
+                event.preventDefault();
+                
+
+                if( event.keyCode === 8 )
+                {   
+                    if( n > 0 )
+                        n--;
+                    
+                    permbajtja = koka + KODI.substring( 0, n - i );
+                }
+                else
+                {   
+                    permbajtja += KODI.charAt( n );
+                    
+                    n++;
+                    
+                }
+
+				txt.value = permbajtja;
+    
+			} );
+
+            
+			txt.addEventListener( "keypress", function( event ){ event.preventDefault(); } );
+
+		</script>
 	</body>
 </html>
